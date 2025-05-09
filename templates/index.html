@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hardware Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>💻 Hardware Purchase Tracker</h1>
+
+        <div class="form-section">
+            <input id="part" placeholder="Hardware Part" />
+            <input id="price" type="number" step="0.01" placeholder="Price (Rubles)" />
+            <button onclick="addHardware()">Add</button>
+            <button onclick="clearAll()">Clear</button>
+        </div>
+
+        <ul class="item-list">
+            {% for item in hardware %}
+                <li>{{ item.hardware_part }} — {{ "%.2f"|format(item.price) }} Rubles</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Total: {{ "%.2f"|format(total) }} Rubles</h3>
+    </div>
+
+    <script src="{{ url_for('static', filename='update.js') }}"></script>
+</body>
+</html>
